@@ -64,7 +64,7 @@ namespace Desafio2.Controllers
             {
                 db.ItemsPedido.Add(itemPedido);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { pedidoId = itemPedido.PedidoId } );
             }
 
             ViewBag.PedidoId = new SelectList(db.Pedidos, "Id", "Id", itemPedido.PedidoId);
@@ -130,7 +130,7 @@ namespace Desafio2.Controllers
             ItemPedido itemPedido = db.ItemsPedido.Find(id);
             db.ItemsPedido.Remove(itemPedido);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { pedidoId = itemPedido.PedidoId});
         }
 
         protected override void Dispose(bool disposing)

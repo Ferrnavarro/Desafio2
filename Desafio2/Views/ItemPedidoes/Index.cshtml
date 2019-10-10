@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Desafio2.Models.ItemPedido>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Items de pedido: " + ViewBag.PedidoId;
 }
 
-<h2>Index</h2>
+<h2>Items para pedido: @ViewBag.PedidoId</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create",  new { pedidoId = ViewBag.PedidoId })
+    @Html.ActionLink("Nuevo Item", "Create",  new { pedidoId = ViewBag.PedidoId }, new { @class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
@@ -35,9 +35,15 @@
             @Html.DisplayFor(modelItem => item.Cantidad)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            @using (Html.BeginForm("Delete", "ItemPedidoes", new { id = item.Id }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Delete" class="btn btn-default" />
+            }
+
+
         </td>
     </tr>
 }
