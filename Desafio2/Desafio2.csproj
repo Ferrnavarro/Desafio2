@@ -153,10 +153,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\desafio2.mdf" />
-    <Content Include="App_Data\desafio2_log.ldf">
-      <DependentUpon>desafio2.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\nombre_de_base.mdf" />
     <Content Include="App_Data\nombre_de_base_log.ldf">
       <DependentUpon>nombre_de_base.mdf</DependentUpon>
