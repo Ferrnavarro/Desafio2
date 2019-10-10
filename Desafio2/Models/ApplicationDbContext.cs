@@ -8,6 +8,10 @@ namespace Desafio2.Models
 {
     public class ApplicationDbContext: DbContext
     {
+        public ApplicationDbContext(): base("nombre_de_base") 
+        {
+
+        }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
