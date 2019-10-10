@@ -15,9 +15,14 @@ namespace Desafio2.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ItemPedidoes
-        public ActionResult Index()
+        public ActionResult Index(int? pedidoId)
         {
-            var itemsPedido = db.ItemsPedido.Include(i => i.Pedido).Include(i => i.Producto);
+            if (pedidoId == null)
+            {
+                return RedirectToAction("Index", "Pedidoes", null);
+            }
+            ViewBag.PedidoId = pedidoId;
+            var itemsPedido = db.ItemsPedido.Include(i => i.Pedido).Include(i => i.Producto).Where(w => w.PedidoId == pedidoId);
             return View(itemsPedido.ToList());
         }
 
@@ -37,9 +42,13 @@ namespace Desafio2.Controllers
         }
 
         // GET: ItemPedidoes/Create
-        public ActionResult Create()
+        public ActionResult Create(int? pedidoId)
         {
-            ViewBag.PedidoId = new SelectList(db.Pedidos, "Id", "Id");
+            if (pedidoId == null)
+            {
+                return RedirectToAction("Index", "Pedidoes", null);
+            }           
+            ViewBag.PedidoId = pedidoId;
             ViewBag.ProductoId = new SelectList(db.Productos, "Id", "Nombre");
             return View();
         }
