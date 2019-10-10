@@ -1,63 +1,49 @@
 ﻿@model IEnumerable<Desafio2.Models.Cliente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Clientes";
+
+    var grid = new WebGrid(
+        source: Model,
+        columnNames: new[] { "Nombres", "Apellidos", "Direccion", "Telefono", "Email", "FechaNacimiento" },
+        rowsPerPage: 20
+        );
+    grid.Pager(WebGridPagerModes.All);
+
 }
 
-<h2>Index</h2>
+<h2>Listado de Clientes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo Cliente", "Create", null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apellidos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div id="gridcontent" style="font-family: Arial; padding: 20px">
+    @grid.GetHtml(
+    tableStyle: "table table-striped w-auto table-info",
+    headerStyle: "table-info",
 
-</table>
+    columns: grid.Columns(
+        grid.Column(columnName: "Nombres", header: "Nombres", canSort: true),
+        grid.Column(columnName: "Apellidos", header: "Apellidos", canSort: true),
+        grid.Column(columnName: "Direccion", header: "Direccion", canSort: true),
+        grid.Column(columnName: "Telefono", header: "Telefono", canSort: true),
+        grid.Column(columnName: "Email", header: "Email", canSort: true),
+        grid.Column(columnName: "FechaNacimiento", header: "Fecha Nacimiento", canSort: true),
+        grid.Column(header: "Editar", format: (item) =>
+        {
+            var link = Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" });
+            return link;
+        }),
+        grid.Column(header: "Ver", format: (item) =>
+        {
+            var link = Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" });
+            return link;
+        }),
+        grid.Column(header: "Eliminar", format: (item) =>
+        {
+            var link = Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" });
+            return link;
+        })
+        ))
+</div>
