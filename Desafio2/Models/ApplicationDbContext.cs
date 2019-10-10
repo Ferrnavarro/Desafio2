@@ -8,7 +8,7 @@ namespace Desafio2.Models
 {
     public class ApplicationDbContext: DbContext
     {
-        public ApplicationDbContext(): base("nombre_de_base") 
+        public ApplicationDbContext(): base("desafio2") 
         {
 
         }

@@ -134,6 +134,10 @@
     <Compile Include="Migrations\201910092213375_FirstMigration.Designer.cs">
       <DependentUpon>201910092213375_FirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910100205028_cambio_precio.cs" />
+    <Compile Include="Migrations\201910100205028_cambio_precio.Designer.cs">
+      <DependentUpon>201910100205028_cambio_precio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -144,6 +148,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\desafio2.mdf" />
+    <Content Include="App_Data\desafio2_log.ldf">
+      <DependentUpon>desafio2.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\nombre_de_base.mdf" />
     <Content Include="App_Data\nombre_de_base_log.ldf">
       <DependentUpon>nombre_de_base.mdf</DependentUpon>
@@ -201,6 +209,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910092213375_FirstMigration.resx">
       <DependentUpon>201910092213375_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910100205028_cambio_precio.resx">
+      <DependentUpon>201910100205028_cambio_precio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

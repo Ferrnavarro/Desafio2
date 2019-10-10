@@ -21,6 +21,6 @@ namespace Desafio2.Models
         public int CantidadExistencia { get; set; }
 
         [Range(0.00, double.MaxValue), Required]
-        public double PrecioUnitario { get; set; }
+        public double Precio { get; set; }
     }
 }
